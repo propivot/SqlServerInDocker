@@ -5,6 +5,10 @@ VisualStudioVersion = 16.0.29411.108
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "MeetUpDB", "src\MeetUpDB\MeetUpDB.sqlproj", "{C5F0E60D-66C0-4C93-B8AE-A6803191EA4E}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MeetUpAPI", "src\MeetUpAPI\MeetUpAPI.csproj", "{6F4B5DBF-9FDC-4B30-8135-4C4760BBF757}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeetUpAPITests", "src\MeetUpAPITests\MeetUpAPITests.csproj", "{F6495D8B-7B1C-415D-93BB-A135ECE06081}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,6 +21,14 @@ Global
 		{C5F0E60D-66C0-4C93-B8AE-A6803191EA4E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C5F0E60D-66C0-4C93-B8AE-A6803191EA4E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C5F0E60D-66C0-4C93-B8AE-A6803191EA4E}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{6F4B5DBF-9FDC-4B30-8135-4C4760BBF757}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F4B5DBF-9FDC-4B30-8135-4C4760BBF757}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F4B5DBF-9FDC-4B30-8135-4C4760BBF757}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F4B5DBF-9FDC-4B30-8135-4C4760BBF757}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F6495D8B-7B1C-415D-93BB-A135ECE06081}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F6495D8B-7B1C-415D-93BB-A135ECE06081}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F6495D8B-7B1C-415D-93BB-A135ECE06081}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F6495D8B-7B1C-415D-93BB-A135ECE06081}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
