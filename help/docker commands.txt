@@ -20,4 +20,12 @@ docker run --rm -e ACCEPT_EULA=Y -e SA_PASSWORD=yourStrong(!)Password -e MSSQL_P
 
 Step IV. - copy db files to project
 
-docker cp meeet_up_sql_volume:/var/opt/mssql/ c:\Dev\Git\SqlServerInDockerDemo\data
+--docker cp meeet_up_sql_volume:/var/opt/mssql/ c:\Dev\Git\SqlServerInDockerDemo\data
+docker cp meeet_up_sql_volume:/var/opt/mssql/data/test_db.bak  c:\Dev\Git\SqlServerInDockerDemo\data
+
+Step V. - build custom image
+
+meetup_sql_2:latest
+docker build -t meetup_sql_2 .
+
+docker run -p 1433:1433 --name meeet_up_sql2 -d meetup_sql_2:latest
