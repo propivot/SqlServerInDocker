@@ -1,0 +1,23 @@
+Step I.
+docker pull mcr.microsoft.com/mssql/server
+
+Setp II.
+docker run -e ACCEPT_EULA=Y -e SA_PASSWORD=yourStrong(!)Password -e MSSQL_PID=Express -p 1433:1433 --name meeet_up_sql1 -d mcr.microsoft.com/mssql/server:latest
+
+
+Connection from SSMS:
+ - Server name: localhost
+ - auth: SQL Auth
+ - login: sa
+ - pwd: yourStrong(!)Password
+
+
+ Step III. - Docker volume
+
+-v  meetup_sql_volume:/var/opt/mssql 
+
+docker run --rm -e ACCEPT_EULA=Y -e SA_PASSWORD=yourStrong(!)Password -e MSSQL_PID=Express -p 1433:1433 --name meeet_up_sql_volume -v  meetup_sql_volume:/var/opt/mssql -d mcr.microsoft.com/mssql/server:latest
+
+Step IV. - copy db files to project
+
+docker cp meeet_up_sql_volume:/var/opt/mssql/ c:\Dev\Git\SqlServerInDockerDemo\data
