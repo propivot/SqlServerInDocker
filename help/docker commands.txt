@@ -25,7 +25,9 @@ docker cp meeet_up_sql_volume:/var/opt/mssql/data/test_db.bak  c:\Dev\Git\SqlSer
 
 Step V. - build custom image
 
+docker cp meeet_up_sql1:/var/opt/mssql/data/MeetUpDB.bak  c:\Dev\Git\SqlServerInDockerDemo\data
 meetup_sql_2:latest
+
 docker build -t meetup_sql_2 .
 
 docker run -p 1433:1433 --name meeet_up_sql2 -d meetup_sql_2:latest
