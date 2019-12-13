@@ -12,8 +12,14 @@ namespace MeetUpAPI.Controllers
     [ApiController]
     public class ValuesController : ControllerBase
     {
-        string connectionStr = @"Data Source=localhost;Initial Catalog=MeetUpDB;User ID=sa;Password=Test@12345";
-        
+        string connectionStr;
+
+        public ValuesController()
+        {
+            var conStr = Settings.GetConnectionString("meetupDb");
+            connectionStr = conStr ?? @"Data Source=localhost;Initial Catalog=MeetUpDB;User ID=sa;Password=Test@12345";
+        }
+
         // GET api/values
         [HttpGet]
         public async Task<ActionResult<IEnumerable<dynamic>>> Get()
@@ -49,6 +55,12 @@ namespace MeetUpAPI.Controllers
 
                 return speakers;
             }
+        }
+
+        [HttpGet("[action]")]
+        public async Task<ActionResult<IEnumerable<dynamic>>> getStatic() 
+        {
+            return Ok(new string[] { "Hello", "bratislava", connectionStr });
         }
 
         // POST api/values

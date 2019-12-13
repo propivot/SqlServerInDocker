@@ -1,0 +1,31 @@
+version: '3.4'
+
+services:
+    webapi:
+        image: meetup_api:latest
+        container_name: meet_up_api
+        depends_on: 
+          - meetupdb
+        ports:
+          - '5000:80'
+          - '5001:443'
+        environment:
+          - DB_ENDPOINT_HOST=meetupdb
+        networks:
+          - meetupnet
+
+    meetupdb:
+      image: meetup_sql_2:latest
+      container_name: meeet_up_sql3
+      networks:
+        - meetupnet
+      ports:
+        - '1433:1433'
+      volumes:
+        - meetup-sql-volume:/var/opt/mssql
+
+networks:
+    meetupnet:
+        driver: bridge
+volumes:
+  meetup-sql-volume:

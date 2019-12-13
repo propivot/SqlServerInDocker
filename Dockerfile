@@ -1,7 +1,7 @@
 FROM mcr.microsoft.com/mssql/server:latest
 
 ENV ACCEPT_EULA=Y
-ENV SA_PASSWORD=Test@12345
+ENV SA_PASSWORD
 ENV MSSQL_PID=Express
 ENV MSSQL_TCP_PORT=1433 
         

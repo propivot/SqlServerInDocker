@@ -1,33 +1,44 @@
 Step I.
-docker pull mcr.microsoft.com/mssql/server
+	docker pull mcr.microsoft.com/mssql/server
 
 Setp II.
-docker run -e ACCEPT_EULA=Y -e SA_PASSWORD=yourStrong(!)Password -e MSSQL_PID=Express -p 1433:1433 --name meeet_up_sql1 -d mcr.microsoft.com/mssql/server:latest
+	docker run -e ACCEPT_EULA=Y -e SA_PASSWORD=yourStrong(!)Password -e MSSQL_PID=Express -p 1433:1433 --name meeet_up_sql1 -d mcr.microsoft.com/mssql/server:latest
 
 
-Connection from SSMS:
- - Server name: localhost
- - auth: SQL Auth
- - login: sa
- - pwd: yourStrong(!)Password
+	Connection from SSMS:
+	 - Server name: localhost
+	 - auth: SQL Auth
+	 - login: sa
+	 - pwd: yourStrong(!)Password
 
 
- Step III. - Docker volume
+Step III. - Docker volume
 
--v  meetup_sql_volume:/var/opt/mssql 
+	-v  meetup_sql_volume:/var/opt/mssql 
 
-docker run --rm -e ACCEPT_EULA=Y -e SA_PASSWORD=yourStrong(!)Password -e MSSQL_PID=Express -p 1433:1433 --name meeet_up_sql_volume -v  meetup_sql_volume:/var/opt/mssql -d mcr.microsoft.com/mssql/server:latest
+	docker run --rm -e ACCEPT_EULA=Y -e SA_PASSWORD=yourStrong(!)Password -e MSSQL_PID=Express -p 1433:1433 --name meeet_up_sql_volume -v  meetup_sql_volume:/var/opt/mssql -d mcr.microsoft.com/mssql/server:latest
 
 Step IV. - copy db files to project
 
---docker cp meeet_up_sql_volume:/var/opt/mssql/ c:\Dev\Git\SqlServerInDockerDemo\data
-docker cp meeet_up_sql_volume:/var/opt/mssql/data/test_db.bak  c:\Dev\Git\SqlServerInDockerDemo\data
+	docker cp meeet_up_sql_volume:/var/opt/mssql/data/test2.bak  c:\Dev\Git\SqlServerInDockerDemo\data
 
 Step V. - build custom image
 
-docker cp meeet_up_sql1:/var/opt/mssql/data/MeetUpDB.bak  c:\Dev\Git\SqlServerInDockerDemo\data
-meetup_sql_2:latest
+	docker cp meeet_up_sql1:/var/opt/mssql/data/MeetUpDB.bak  c:\Dev\Git\SqlServerInDockerDemo\data
+	meetup_sql_2:latest
 
-docker build -t meetup_sql_2 .
+	docker build -t meetup_sql_2 .
 
-docker run -p 1433:1433 --name meeet_up_sql2 -d meetup_sql_2:latest
+	docker run -p 1433:1433 --name meeet_up_sql2 -d meetup_sql_2:latest
+
+Step VI. - build webApi docer image
+
+	docker build  --force-rm -t meetup_api .
+
+	docker run --rm --name meet_up_api -p 5000:80 -p 5001:443 -e DB_ENDPOINT_HOST=meetupdb  meetup_api:latest
+
+	https://localhost:5001/api/values
+	https://localhost:5001/api/values/getStatic
+	http://localhost:5000/api/values/getStatic
+
+Step VII. - Docker Compose
